@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormInput from "../../components/FormInput/FormInput";
-import {Link} from 'react-router-dom'
+import { withRouter,Link } from "react-router-dom";
 class LogIn extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +13,7 @@ class LogIn extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
-    // const { email, password } = this.state;
-
-    console.log(this.state);
+    this.props.history.push("/all-jobs");
   };
 
   handleChange = (event) => {
@@ -50,11 +47,11 @@ class LogIn extends Component {
           <button type="submit"> Sign in </button>
         </form>
         <div>
-            <h4>New to MyJobs?</h4>
+            <h6>New to MyJobs?</h6>
             <Link to='/signup'>Create an account</Link>
         </div>
       </div>
     );
   }
 }
-export default LogIn;
+export default withRouter(LogIn);

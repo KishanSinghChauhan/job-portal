@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormInput from "../../components/FormInput/FormInput";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 class ResetPass extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +13,8 @@ class ResetPass extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(this.state);
+    this.props.history.push("/login");
+    // console.log(this.state);
   };
 
   handleChange = (event) => {
@@ -25,24 +25,24 @@ class ResetPass extends Component {
   render() {
     return (
       <div className="log-in">
-        <h4>Login</h4>
-
+        <h4>Reset your password</h4>
+        <p>Enter your new password below.</p>
         <form onSubmit={this.handleSubmit}>
           <FormInput
-            name="New Password"
+            name="password"
             type="password"
             handleChange={this.handleChange}
             value={this.state.newPassword}
             label="New password"
-            required
+            // required
           />
           <FormInput
-            name="Confirm New Password"
+            name="password"
             type="password"
             value={this.state.confirmNewPassword}
             handleChange={this.handleChange}
             label="Confirm new password"
-            required
+            // required
           />
           <button type="submit">Reset</button>
         </form>
@@ -50,4 +50,4 @@ class ResetPass extends Component {
     );
   }
 }
-export default ResetPass;
+export default withRouter(ResetPass);

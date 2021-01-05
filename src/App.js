@@ -7,6 +7,9 @@ import SignUp from "./containers/SignUp/SignUp";
 import Navbar from './components/Navbar/Navbar';
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import ResetPass from "./components/ResetPassword/ResetPassword";
+import AllJobs from "./containers/Candidate/AllJobs";
+import AppliedJobs from "./containers/Candidate/AppliedJobs";
+
 
 
 
@@ -20,6 +23,8 @@ const App = () => {
         <Route path="/signup" component={SignUp} />
         <Route path="/forget-pass" component={ForgetPassword} />
         <Route path="/reset-pass" component={ResetPass} />
+        <Route path="/all-jobs" component={AllJobs} />
+        <Route path="/applied-jobs" component={AppliedJobs} />
       </Switch>
     </>
   );
