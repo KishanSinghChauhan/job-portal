@@ -5,6 +5,10 @@ import {Route,Switch} from 'react-router-dom'
 import LogIn from './containers/LogIn/LogIn';
 import SignUp from "./containers/SignUp/SignUp";
 import Navbar from './components/Navbar/Navbar';
+import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
+import ResetPass from "./components/ResetPassword/ResetPassword";
+
+
 
 const App = () => {
   return (
@@ -14,6 +18,8 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LogIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/forget-pass" component={ForgetPassword} />
+        <Route path="/reset-pass" component={ResetPass} />
       </Switch>
     </>
   );

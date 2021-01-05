@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import { Link } from "react-router-dom";
 
-
 class SignUp extends Component {
   constructor() {
     super();
@@ -12,7 +11,7 @@ class SignUp extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      skills:""
+      skills: "",
     };
   }
 
@@ -28,7 +27,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { FullName, email, password, confirmPassword,skills } = this.state;
+    const { FullName, email, password, confirmPassword, skills } = this.state;
 
     return (
       <div className="sign-up">

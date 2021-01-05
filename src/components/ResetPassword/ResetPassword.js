@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import FormInput from "../../components/FormInput/FormInput";
-import {Link} from 'react-router-dom'
-class LogIn extends Component {
+import { Link } from "react-router-dom";
+class ResetPass extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
+      newPassword: "",
+      confirmNewPassword: "",
     };
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
-    // const { email, password } = this.state;
 
     console.log(this.state);
   };
@@ -31,30 +29,25 @@ class LogIn extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <FormInput
-            name="email"
-            type="email"
+            name="New Password"
+            type="password"
             handleChange={this.handleChange}
-            value={this.state.email}
-            label="email"
+            value={this.state.newPassword}
+            label="New password"
             required
           />
           <FormInput
-            name="password"
+            name="Confirm New Password"
             type="password"
-            value={this.state.password}
+            value={this.state.confirmNewPassword}
             handleChange={this.handleChange}
-            label="password"
+            label="Confirm new password"
             required
           />
-          <Link to='/forget-pass'>Forget your password?</Link>
-          <button type="submit"> Sign in </button>
+          <button type="submit">Reset</button>
         </form>
-        <div>
-            <h4>New to MyJobs?</h4>
-            <Link to='/signup'>Create an account</Link>
-        </div>
       </div>
     );
   }
 }
-export default LogIn;
+export default ResetPass;
