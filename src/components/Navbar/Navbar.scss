@@ -1,0 +1,23 @@
+.navbar-main {
+    background-color: #303F60;
+    height: 200px;
+    
+    .navbar-head {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 10px;
+        border-bottom: 1px solid #4D618E;
+        color: #ffffff;
+    }
+
+    .nav-head{
+        font-weight: bold;
+    }
+    .job-head {
+        color: #43AFFF;
+    }
+
+    
+}
