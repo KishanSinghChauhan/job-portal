@@ -50,7 +50,7 @@ class LogIn extends Component {
         </form>
         <div>
             <h4>New to MyJobs?</h4>
-            <Link to='signup'>Create an account</Link>
+            <Link to='/signup'>Create an account</Link>
         </div>
       </div>
     );
