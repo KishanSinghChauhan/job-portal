@@ -26,7 +26,6 @@ const LogIn = () => {
           localStorage.setItem("jwt", data.data.token);
           localStorage.setItem("data", JSON.stringify(data.data));
           console.log(data.data);
-          // history.push("/candidate/jobs");
         }
         if(data.data.userRole === 0){
           history.push('/recruiter/jobs')
