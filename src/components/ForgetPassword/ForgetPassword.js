@@ -1,48 +1,39 @@
-import React, { Component } from "react";
-import FormInput from "../../components/FormInput/FormInput";
-import { Link } from "react-router-dom";
-class ForgetPassword extends Component {
-  constructor(props) {
-    super(props);
+import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
+const ForgetPassword =() => {
+  // const history = useHistory();
+  const [email,setEmail] = useState('')
 
-    this.state = {
-      email: "",
-    };
+  const resetToken = () => {
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${email}`
+    ).then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
   }
 
-  //   handleSubmit = async (event) => {
-  //     event.preventDefault();
-
-  //     console.log(this.state);
-
-  //   };
-
-  handleChange = (event) => {
-    const { value, name } = event.target;
-
-    this.setState({ [name]: value });
-  };
-  render() {
-    return (
+  const handleToken = () => {
+    resetToken();
+  }
+  return (
       <div className="log-in">
         <h4>Forget your password?</h4>
         <p>
           Enter the email associated with your account and we’ll send you
           instructions to reset your password.
         </p>
-        <FormInput
+        <input
           name="email"
           type="email"
-          handleChange={this.handleChange}
-          value={this.state.email}
-          label="Email Address"
+          onChange={e => setEmail(e.target.value)}
+          value={email}
           required
         />
-        <Link to="/reset-pass" type="submit">
+        <button onClick={handleToken}>
           Submit
-        </Link>
+        </button>
       </div>
     );
   }
-}
 export default ForgetPassword;

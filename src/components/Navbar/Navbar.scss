@@ -1,23 +1,44 @@
+//variables
+
+$nav-color:#303F60;
+$secondary-color:#1A253C;
+$text-color:#43AFFF;
+$border-color:#4D618E;
+
+
 .navbar-main {
-    background-color: #303F60;
-    height: 200px;
-    
+    background: transparent linear-gradient(248deg, $nav-color 0%, $secondary-color 100%) 0% 0% no-repeat padding-box;
+    height: 460px;
+
     .navbar-head {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 90%;
         margin: 0 auto;
         padding: 20px 10px;
-        border-bottom: 1px solid #4D618E;
+        border-bottom: 1px solid $border-color;
         color: #ffffff;
     }
 
-    .nav-head{
+    .nav-head {
         font-weight: bold;
     }
+
     .job-head {
-        color: #43AFFF;
+        color: $text-color;
     }
 
-    
+    .login-btn {
+        border: 1px solid $text-color;
+        padding: 8px 16px;
+        border-radius: 4px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 16px;
+        background: #4D618E;
+        &:hover{
+            text-decoration: none;
+        }
+    }
 }

@@ -21,7 +21,7 @@ const Navbar = () => {
             )}
           </div>
         ) : (
-          <Link to="/login">Login/Signup</Link>
+          <Link className='login-btn' to="/login">Login/Signup</Link>
         )}
         {userData ? (<span>{userData.name}</span>) : null}
       </div>
