@@ -15,7 +15,7 @@ const Navbar = ({token,userData}) => {
           {userData.userRole === 1 ? (
             <Link to="/candidate/jobs/applied">Applied Jobs</Link>
           ) : (
-            <Link to="/recruiter/jobs/applied">Post a Job</Link>
+            <Link to="/recruiter/jobs/post">Post a Job</Link>
           )}
           <Link to="/login">Login/Signup</Link>
           <span>{userData.name}</span>

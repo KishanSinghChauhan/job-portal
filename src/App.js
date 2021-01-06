@@ -10,6 +10,7 @@ import ResetPass from "./components/ResetPassword/ResetPassword";
 import AllJobs from "./containers/Candidate/AllJobs";
 import AppliedJobs from "./containers/Candidate/AppliedJobs";
 import JobPosted from './containers/Recruiter/JobPosted';
+import NewJobPost from './containers/Recruiter/NewJobPost';
 
 
 
@@ -29,7 +30,8 @@ const App = () => {
         <Route path="/reset-pass" component={ResetPass} />
         <Route path="/candidate/jobs" exact component={AllJobs} />
         <Route path="/candidate/jobs/applied" component={AppliedJobs} />
-        <Route path="/recruiter/jobs" component={JobPosted} />
+        <Route path="/recruiter/jobs" exact component={JobPosted} />
+        <Route path="/recruiter/jobs/post" component={NewJobPost} />
       </Switch>
     </>
   );
