@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import './candidate_scss/AppliedJobs.scss';
+import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import EventNoteIcon from "@material-ui/icons/EventNote";
 const AppliedJobs = () => {
   const history = useHistory();
   const [data, setData] = useState([]);
@@ -25,35 +28,40 @@ const AppliedJobs = () => {
     appliedJobs();
   }, []);
   return (
-    <>
-      <h1>Applied Jobs</h1>
-      <div className="row">
-        {!data.message ? (
-          data.map((d) => {
-            return (
-              <div
-                key={d.id}
-                className="card col-md-3 col-6"
-                style={{ minHeight: "100px" }}
-              >
-                <div>
-                  <h6>{d.title}</h6>
-                  <p>{d.description}</p>
-                  <span>{d.location}</span>
+    <div className='applied-main'>
+      <div className='applied'>
+        <h6 className='applied-head'>Applied Jobs</h6>
+        <div className="row">
+          {!data.message ? (
+            data.map((d) => {
+              return (
+                <div key={d.id} className="col-md-3 col-6 applied-det">
+                  <h6 className="applied-title">{d.title}</h6>
+                  <p className="applied-para">{d.description}</p>
+                  <p className="location">
+                    <LocationOnOutlinedIcon style={{ color: "#43AFFF" }} />
+                    {d.location}
+                  </p>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <>
-            <h4>{data.message}</h4>
-            <button onClick={() => history.push("/all-jobs")}>
-              see all jobs
-            </button>
-          </>
-        )}
+              );
+            })
+          ) : (
+            <div className="no-applied">
+              <EventNoteIcon style={{ fontSize: "100px", color: "grey" }} />
+              <h6 style={{ color: "#303F60", fontSize: "20px" }}>
+                Your applied jobs will show here!
+              </h6>
+              <button
+                className="see-job"
+                onClick={() => history.push("/candidate/jobs")}
+              >
+                See all jobs
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
