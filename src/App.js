@@ -23,8 +23,8 @@ const App = () => {
         <Route path="/signup" component={SignUp} />
         <Route path="/forget-pass" component={ForgetPassword} />
         <Route path="/reset-pass" component={ResetPass} />
-        <Route path="/all-jobs" component={AllJobs} />
-        <Route path="/applied-jobs" component={AppliedJobs} />
+        <Route path="/candidate/jobs" exact component={AllJobs} />
+        <Route path="/candidate/jobs/applied" component={AppliedJobs} />
       </Switch>
     </>
   );

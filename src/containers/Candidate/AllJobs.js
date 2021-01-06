@@ -8,7 +8,7 @@ const AllJobs = () => {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        'Authorization': localStorage.getItem("jwt"),
+        Authorization: localStorage.getItem("jwt"),
       },
     })
       .then((res) => res.json())
@@ -27,11 +27,11 @@ const AllJobs = () => {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        'Authorization': localStorage.getItem("jwt"),
+        Authorization: localStorage.getItem("jwt"),
       },
-      body:JSON.stringify({
-        jobId:id
-      })
+      body: JSON.stringify({
+        jobId: id,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -41,8 +41,9 @@ const AllJobs = () => {
 
   const handleApply = (d) => {
     setId(d.id);
-    console.log(d.id);
+    if (id) {
       applyJob();
+    }
   };
   const jobDetail = data.map((d) => {
     return (
