@@ -1,53 +1,47 @@
-import React, { Component } from "react";
-import FormInput from "../../components/FormInput/FormInput";
-import { withRouter } from "react-router-dom";
-class ResetPass extends Component {
-  constructor(props) {
-    super(props);
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import './ResetPass.scss'
+const ResetPass = () => {
+  const history = useHistory();
 
-    this.state = {
-      newPassword: "",
-      confirmNewPassword: "",
-    };
-  }
+  const[pass,setPass]= useState('');
+  const [newPass, setNewPass] = useState("");
 
-  handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push("/login");
-    // console.log(this.state);
+    history.push("/login");
   };
-
-  handleChange = (event) => {
-    const { value, name } = event.target;
-
-    this.setState({ [name]: value });
-  };
-  render() {
-    return (
-      <div className="log-in">
-        <h4>Reset your password</h4>
-        <p>Enter your new password below.</p>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
+  return (
+    <div className='reset-main'>
+      <div className="reset">
+        <h4 className='reset-head'>Reset your password</h4>
+        <p className='reset-para'>Enter your new password below.</p>
+        <div className='reset-inputs'>
+          <label>New password*</label>
+          <input
             name="password"
+            placeholder="Enter your password"
             type="password"
-            handleChange={this.handleChange}
-            value={this.state.newPassword}
-            label="New password"
-            // required
+            onChange={e => setPass(e.target.value)}
+            value={pass}
           />
-          <FormInput
+          <label>Confirm new password*</label>
+
+          <input
             name="password"
+            placeholder="Enter your password"
             type="password"
-            value={this.state.confirmNewPassword}
-            handleChange={this.handleChange}
-            label="Confirm new password"
-            // required
+            value={newPass}
+            onChange={e => setNewPass(e.target.value)}
           />
-          <button type="submit">Reset</button>
-        </form>
+        </div>
+        <div className="reset-sub-main">
+          <button className="reset-sub" onClick={handleSubmit}>
+            Reset
+          </button>
+        </div>
       </div>
-    );
-  }
-}
-export default withRouter(ResetPass);
+    </div>
+  );
+};
+export default ResetPass;

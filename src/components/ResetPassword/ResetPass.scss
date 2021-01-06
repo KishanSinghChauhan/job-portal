@@ -1,11 +1,12 @@
 $text-color: #43afff;
 
 
-.signup-main {
+
+.reset-main {
     background: #edf6ff;
     height: 451px;
 
-    .sign-up {
+    .reset {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -18,7 +19,7 @@ $text-color: #43afff;
         transform: translate(-50%, -50%);
     }
 
-    .signup-inputs {
+    .reset-inputs {
         display: flex;
         flex-direction: column;
 
@@ -40,17 +41,17 @@ $text-color: #43afff;
         }
     }
 
-    .signup-title {
+    .reset-head {
         font-size: 22px;
         font-weight: 600;
         margin-bottom: 20px;
     }
 
-    .signBtn-main {
+    .reset-sub-main {
         text-align: center;
     }
 
-    .sign-btn {
+    .reset-sub {
         border: none;
         background: $text-color;
         color: white;
@@ -60,20 +61,7 @@ $text-color: #43afff;
         font-weight: 600;
     }
 
-    .login-part {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-    }
-
-    .log {
-        position: relative;
-        bottom: 2px;
-        left: 5px;
-        color: $text-color;
-
-        &:hover {
-            text-decoration: none;
-        }
+    .reset-para {
+        font-size: 14px;
     }
 }

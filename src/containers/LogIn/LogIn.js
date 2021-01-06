@@ -59,7 +59,7 @@ const LogIn = () => {
           />
         </div>
         <Link className="forget-link" to="/forget-pass">
-          Forget your password?
+          Forgot your password?
         </Link>
         <div className='logBtn-main'>
           <button className="log-btn" onClick={() => Login()}>
