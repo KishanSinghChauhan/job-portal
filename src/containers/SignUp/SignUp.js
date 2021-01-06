@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-
+import './SignUp.scss';
 const SignUp = () => {
   const history = useHistory();
   const [name, setName] = useState("");

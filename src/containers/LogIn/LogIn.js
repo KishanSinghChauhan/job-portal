@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import './LogIn.scss'
 const LogIn = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -36,29 +37,39 @@ const LogIn = () => {
       });
   };
   return (
-    <div className="log-in">
-      <h4>Login</h4>
-
-      <input
-        name="email"
-        type="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        label="email"
-      />
-      <input
-        name="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        label="password"
-        required
-      />
-      <Link to="/forget-pass">Forget your password?</Link>
-      <button onClick={() => Login()}> Sign in </button>
-      <div>
-        <h6>New to MyJobs?</h6>
-        <Link to="/signup">Create an account</Link>
+    <div className="login-main">
+      <div className="log-in">
+        <h4 className="log-head">Login</h4>
+        <div className="log-inputs">
+          <label>Email Address</label>
+          <input
+            placeholder="Enter your email"
+            name="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+          <label>Password</label>
+          <input
+            name="password"
+            placeholder="Enter your password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <Link className="forget-link" to="/forget-pass">
+          Forget your password?
+        </Link>
+        <div className='logBtn-main'>
+          <button className="log-btn" onClick={() => Login()}>
+            Login
+          </button>
+        </div>
+        <div className='signUp-part'>
+          <h6>New to MyJobs?</h6>
+          <Link className='create-acc' to="/signup">Create an account</Link>
+        </div>
       </div>
     </div>
   );
