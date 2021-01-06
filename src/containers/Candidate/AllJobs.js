@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Pagination from "@material-ui/lab/Pagination";
 
 const AllJobs = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
-  const availableJobs = () => {
-    fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
+  const [page,setPage] = useState(1);
+  const availableJobs = (page) => {
+    fetch(`https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${page}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -19,8 +21,8 @@ const AllJobs = () => {
   };
 
   useEffect(() => {
-    availableJobs();
-  }, []);
+    availableJobs(page);
+  }, [page]);
 
   const applyJob = () => {
     fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
@@ -67,10 +69,17 @@ const AllJobs = () => {
       </div>
     );
   });
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    console.log(value);
+  };
+
   return (
     <div>
       <h4>Jobs for you</h4>
       <div className="row">{jobDetail}</div>
+      <Pagination count={4} shape="rounded" onChange={handleChange}/>
     </div>
   );
 };

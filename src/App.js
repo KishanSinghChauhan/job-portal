@@ -16,12 +16,11 @@ import NewJobPost from './containers/Recruiter/NewJobPost';
 
 
 const App = () => {
-  const token = localStorage.getItem("jwt");
-  const userData = JSON.parse(localStorage.getItem("data"));
+  
   
   return (
     <>
-      <Navbar token={token} userData={userData} />
+      <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LogIn} />
