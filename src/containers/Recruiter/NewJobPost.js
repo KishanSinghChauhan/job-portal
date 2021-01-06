@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import './recruiter_scss/NewJobPost.scss'
 const NewJobPost = () => {
   const history = useHistory();
   const [title, setTitle] = useState("");
@@ -28,31 +29,44 @@ const NewJobPost = () => {
   };
 
   return (
-    <div>
-      <h4>Post a Job</h4>
-      <input
-        name="title"
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-        required
-      />
-      <textarea
-        name="description"
-        type="text"
-        value={description}
-        onChange={(e) => SetDescription(e.target.value)}
-        row={10}
-        required
-      />
-      <input
-        name="location"
-        type="text"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        required
-      />
-      <button onClick={() => PostJob()}>POST</button>
+    <div className="new-post-main">
+      <div className="new-post">
+        <h6 className="post-head">Post a Job</h6>
+        <div className='post-inputs'>
+          <label>Job title*</label>
+          <input
+            name="title"
+            placeholder='Enter job title'
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
+          <label>Description*</label>
+
+          <textarea
+            name="description"
+            placeholder='Enter a job description'
+            type="text"
+            className='post-des'
+            value={description}
+            onChange={(e) => SetDescription(e.target.value)}
+          />
+          <label>Location*</label>
+
+          <input
+            name="location"
+            placeholder='Enter location'
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div className="post-sub-main">
+          <button className="post-sub" onClick={() => PostJob()}>
+            POST
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
