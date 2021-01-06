@@ -1,3 +1,6 @@
+$text-color: #43afff;
+
+
 .job-posted-main {
     background: #edf6ff;
     min-height: 451px;
@@ -58,4 +61,24 @@
             }
         }
     }
+}
+
+
+.no-job {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.post-job {
+    border: none;
+    background: $text-color;
+    color: white;
+    padding: 8px 32px;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-weight: 600;
 }

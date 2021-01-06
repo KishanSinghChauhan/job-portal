@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./recruiter_scss/JobPosted.scss";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import EventNoteIcon from "@material-ui/icons/EventNote";
 const JobPosted = () => {
+  const history = useHistory();
   const [data, setData] = useState([]);
   const Jobs = () => {
     fetch("https://jobs-api.squareboat.info/api/v1/recruiters/jobs", {
@@ -49,12 +52,12 @@ const JobPosted = () => {
       <div key={d.id} className="col-md-3 col-6 job-det">
         <h6 className="job-title">{d.title}</h6>
         <p className="job-para">{d.description}</p>
-        <p className='location'>
+        <p className="location">
           <LocationOnOutlinedIcon style={{ color: "#43AFFF" }} />
           {d.location}
         </p>
         <button
-        className='view-applicants'
+          className="view-applicants"
           onClick={() => {
             handleApplication(d);
           }}
@@ -64,11 +67,27 @@ const JobPosted = () => {
       </div>
     );
   });
+
+  const handleClick = () => {
+    history.push("/recruiter/jobs/post");
+  };
   return (
     <div className="job-posted-main">
       <div className="job-posted">
         <h1 className="job-posted-head">Job Posted by you</h1>
-        <div className="row">{jobDetails}</div>
+        {data ? (
+          <div className="row">{jobDetails}</div>
+        ) : (
+          <div className="no-job">
+            <EventNoteIcon style={{ fontSize: "100px", color: "grey" }} />
+            <h6 style={{ color: "#303F60", fontSize: "20px" }}>
+              Your posted jobs will show here!
+            </h6>
+            <button className="post-job" onClick={handleClick}>
+              Post a Job
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
