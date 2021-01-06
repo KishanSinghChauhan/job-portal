@@ -1,57 +1,58 @@
-import React, { Component } from "react";
-import FormInput from "../../components/FormInput/FormInput";
-import { withRouter,Link } from "react-router-dom";
-class LogIn extends Component {
-  constructor(props) {
-    super(props);
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+const LogIn = () => {
+  const history = useHistory();
+  const [email, setEmail] = useState("");
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+  const [password, setPassword] = useState("");
 
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    this.props.history.push("/all-jobs");
+  const Login = () => {
+    fetch("https://jobs-api.squareboat.info/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+        } else {
+          console.log(data);
+          history.push("/all-jobs");
+        }
+      });
   };
+  return (
+    <div className="log-in">
+      <h4>Login</h4>
 
-  handleChange = (event) => {
-    const { value, name } = event.target;
-
-    this.setState({ [name]: value });
-  };
-  render() {
-    return (
-      <div className="log-in">
-        <h4>Login</h4>
-
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            name="email"
-            type="email"
-            handleChange={this.handleChange}
-            value={this.state.email}
-            label="email"
-            required
-          />
-          <FormInput
-            name="password"
-            type="password"
-            value={this.state.password}
-            handleChange={this.handleChange}
-            label="password"
-            required
-          />
-          <Link to='/forget-pass'>Forget your password?</Link>
-          <button type="submit"> Sign in </button>
-        </form>
-        <div>
-            <h6>New to MyJobs?</h6>
-            <Link to='/signup'>Create an account</Link>
-        </div>
+      <input
+        name="email"
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+        label="email"
+      />
+      <input
+        name="password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        label="password"
+        required
+      />
+      <Link to="/forget-pass">Forget your password?</Link>
+      <button onClick={() => Login()}> Sign in </button>
+      <div>
+        <h6>New to MyJobs?</h6>
+        <Link to="/signup">Create an account</Link>
       </div>
-    );
-  }
-}
-export default withRouter(LogIn);
+    </div>
+  );
+};
+export default LogIn;
