@@ -8,13 +8,13 @@ const AppliedJobs = () => {
         method: "GET",
         headers: {
           "Content-type": "application/json",
-          Authorization: localStorage.getItem("jwt"),
+          'Authorization': localStorage.getItem("jwt"),
         },
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          setData(data);
+          setData(data.data);
         });
     };
     useEffect(() => {
@@ -23,8 +23,22 @@ const AppliedJobs = () => {
     return (
         <div>
             <h1>Applied Jobs</h1>
-            {data.message && data.message}
-            <button onClick={() => history.push('/all-jobs')}>see all jobs</button>
+            {data.map( d => {
+              return (
+                <div
+                  key={d.id}
+                  className="card col-md-3 col-6"
+                  style={{ minHeight: "100px" }}
+                >
+                  <div>
+                    <h6>{d.title}</h6>
+                    <p>{d.description}</p>
+                    <span>{d.location}</span>
+                  </div>
+                </div>
+              );
+            })}
+            {/* <button onClick={() => history.push('/all-jobs')}>see all jobs</button> */}
         </div>
     )
 }
