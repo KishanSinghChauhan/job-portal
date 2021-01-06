@@ -1,9 +1,7 @@
 import React from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
-const Navbar = () => {
-  const token = localStorage.getItem('jwt');
-  const userData = JSON.parse(localStorage.getItem('data')).name;
+const Navbar = ({token,userData}) => {
   
   return (
     <div className="navbar-main">
@@ -14,9 +12,13 @@ const Navbar = () => {
           </h3>
         </div>
         <div>
-          <Link to="/candidate/jobs/applied">Applied Jobs</Link>
-          {!token && <Link to="/login">Login/Signup</Link>}
-          <span>{userData}</span>
+          {userData.userRole === 1 ? (
+            <Link to="/candidate/jobs/applied">Applied Jobs</Link>
+          ) : (
+            <Link to="/recruiter/jobs/applied">Post a Job</Link>
+          )}
+          <Link to="/login">Login/Signup</Link>
+          <span>{userData.name}</span>
         </div>
       </div>
     </div>

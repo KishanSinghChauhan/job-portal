@@ -9,14 +9,18 @@ import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import ResetPass from "./components/ResetPassword/ResetPassword";
 import AllJobs from "./containers/Candidate/AllJobs";
 import AppliedJobs from "./containers/Candidate/AppliedJobs";
+import JobPosted from './containers/Recruiter/JobPosted';
 
 
 
 
 const App = () => {
+  const token = localStorage.getItem("jwt");
+  const userData = JSON.parse(localStorage.getItem("data"));
+  
   return (
     <>
-      <Navbar />
+      <Navbar token={token} userData={userData} />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LogIn} />
@@ -25,6 +29,7 @@ const App = () => {
         <Route path="/reset-pass" component={ResetPass} />
         <Route path="/candidate/jobs" exact component={AllJobs} />
         <Route path="/candidate/jobs/applied" component={AppliedJobs} />
+        <Route path="/recruiter/jobs" component={JobPosted} />
       </Switch>
     </>
   );
