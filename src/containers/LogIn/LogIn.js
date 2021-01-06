@@ -22,8 +22,8 @@ const LogIn = () => {
         if (data.message) {
           console.log(data.message);
         } else {
-          localStorage.setItem("jwt", data.data.token);
-
+            localStorage.setItem('jwt',data.data.token)
+          localStorage.setItem("data", JSON.stringify(data.data));
           console.log(data.data);
           history.push("/all-jobs");
         }
