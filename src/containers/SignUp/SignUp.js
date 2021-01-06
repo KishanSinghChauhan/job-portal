@@ -29,8 +29,9 @@ const SignUp = () => {
         if (data.errors) {
           console.log("error");
         } else {
-          console.log(data);
-          history.push("/all-jobs");
+            localStorage.setItem('jwt',data.token);
+            console.log(data);
+            history.push("/all-jobs");
         }
       });
   };

@@ -22,7 +22,9 @@ const LogIn = () => {
         if (data.message) {
           console.log(data.message);
         } else {
-          console.log(data);
+          localStorage.setItem("jwt", data.data.token);
+
+          console.log(data.data);
           history.push("/all-jobs");
         }
       });
