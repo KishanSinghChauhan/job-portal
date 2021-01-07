@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./SignUp.scss";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+
+
 const SignUp = () => {
   const history = useHistory();
   const [name, setName] = useState("");
@@ -8,8 +15,10 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [skills, setSkills] = useState("");
+  const [userRole, setUserRole] = useState(0);
 
   const SignUp = () => {
+    console.log(userRole);
     fetch("https://jobs-api.squareboat.info/api/v1/auth/register", {
       method: "POST",
       headers: {
@@ -21,17 +30,20 @@ const SignUp = () => {
         confirmPassword,
         skills,
         name,
-        userRole: 0,
+        userRole:parseInt(userRole),
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.errors) {
-          console.log("error");
-        } else {
-          localStorage.setItem("jwt", data.token);
-          console.log(data);
-          history.push("/all-jobs");
+          console.log(data.errors);
+        } 
+        else {
+          localStorage.setItem("jwt", data.data.token);
+          localStorage.setItem("data", JSON.stringify(data.data));
+
+          console.log(data.data);
+          // history.push("/all-jobs");
         }
       });
   };
@@ -40,6 +52,23 @@ const SignUp = () => {
       <div className="sign-up">
         <h2 className="signup-title">Signup</h2>
         <div className="signup-inputs">
+          <label>I'm a*</label>
+          <FormControl component="fieldset">
+            <RadioGroup
+            style={{flexDirection:'row'}}
+              aria-label="I'm a"
+              name="userRole"
+              value={userRole}
+              onChange={e => setUserRole(e.target.value)}
+            >
+              <FormControlLabel
+                value="0"
+                control={<Radio />}
+                label="Recruiter"
+              />
+              <FormControlLabel value="1" control={<Radio />} label="Candidate" />
+            </RadioGroup>
+          </FormControl>
           <label>Full Name*</label>
           <input
             type="text"
@@ -63,7 +92,7 @@ const SignUp = () => {
 
               <input
                 type="password"
-                placeholder="Enter your email"
+                placeholder="Enter your password"
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
