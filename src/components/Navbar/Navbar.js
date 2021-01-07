@@ -6,6 +6,7 @@ import { DropdownButton,Dropdown } from "react-bootstrap";
 const Navbar = ({ handleToken,token,userRole,userData }) => {
 
   const token2 = localStorage.getItem('jwt');
+  
   return (
     <div className="navbar-main">
       <div className="navbar-head">
@@ -17,7 +18,7 @@ const Navbar = ({ handleToken,token,userRole,userData }) => {
         <div className="nav-right">
           {token || token2 ? (
             <div>
-              {userRole === 1 ? (
+              {userRole === 1  ? (
                 <Link className="user-link" to="/candidate/jobs/applied">
                   Applied Jobs
                 </Link>

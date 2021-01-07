@@ -10,6 +10,8 @@ $text-color: #43afff;
         position: absolute;
         left: 50%;
         transform: translate(-50%, -60%);
+        height: 60%;
+
     }
 
     .job-posted-head {
@@ -60,7 +62,7 @@ $text-color: #43afff;
                 outline: none;
             }
 
-            &:hover{
+            &:hover {
                 text-decoration: none;
             }
         }
