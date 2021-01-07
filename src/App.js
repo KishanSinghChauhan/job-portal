@@ -33,7 +33,13 @@ const App = () => {
       setUserRole(data.userRole);
     }
   }
-
+  const handleSignUp = (token, data) => {
+    setToken(token);
+    if (data) {
+      setUserData(data.name);
+      setUserRole(data.userRole);
+    }
+  };
   return (
     <>
       <Navbar
@@ -44,8 +50,14 @@ const App = () => {
       />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/login" render={() => <LogIn handleLogin={handleLogin}/>} />
-        <Route path="/signup" component={SignUp} />
+        <Route
+          path="/login"
+          render={() => <LogIn handleLogin={handleLogin} />}
+        />
+        <Route
+          path="/signup"
+          render={() => <SignUp handleSignUp={handleSignUp} />}
+        />
         <Route path="/forget-pass" component={ForgetPassword} />
         <Route path="/reset-pass" component={ResetPass} />
         <Route path="/candidate/jobs" exact component={AllJobs} />

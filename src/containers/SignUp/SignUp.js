@@ -7,7 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
 
-const SignUp = () => {
+const SignUp = ({ handleSignUp }) => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,18 +29,18 @@ const SignUp = () => {
         confirmPassword,
         skills,
         name,
-        userRole:parseInt(userRole),
+        userRole: parseInt(userRole),
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.errors) {
           console.log(data.errors);
-        } 
-        else if(data.message){
+        } else if (data.message) {
           console.log(data.message);
-        }
-        else {
+        } else {
+          handleSignUp(data.data.token, data.data);
+          console.log(data.data);
           localStorage.setItem("jwt", data.data.token);
           localStorage.setItem("data", JSON.stringify(data.data));
 
@@ -61,18 +61,22 @@ const SignUp = () => {
           <label>I'm a*</label>
           <FormControl component="fieldset">
             <RadioGroup
-            style={{flexDirection:'row'}}
+              style={{ flexDirection: "row" }}
               aria-label="I'm a"
               name="userRole"
               value={userRole}
-              onChange={e => setUserRole(e.target.value)}
+              onChange={(e) => setUserRole(e.target.value)}
             >
               <FormControlLabel
                 value="0"
                 control={<Radio />}
                 label="Recruiter"
               />
-              <FormControlLabel value="1" control={<Radio />} label="Candidate" />
+              <FormControlLabel
+                value="1"
+                control={<Radio />}
+                label="Candidate"
+              />
             </RadioGroup>
           </FormControl>
           <label>Full Name*</label>
