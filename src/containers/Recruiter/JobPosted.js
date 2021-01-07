@@ -57,7 +57,7 @@ const JobPosted = () => {
           <div className="no-job">
             <EventNoteIcon style={{ fontSize: "100px", color: "grey" }} />
             <h6 style={{ color: "#303F60", fontSize: "20px" }}>
-              Your posted jobs will show here!
+              Your posted jobs will show here!{" "}
             </h6>
             <button className="post-job" onClick={handleClick}>
               Post a Job

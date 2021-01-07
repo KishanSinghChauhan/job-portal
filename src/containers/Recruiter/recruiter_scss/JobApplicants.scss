@@ -1,25 +1,28 @@
 $text-color: #43afff;
 
 
-.job-posted-main {
+.applicants-main {
     background: #edf6ff;
     min-height: 451px;
 
-    .job-posted {
+    .applicants {
         width: 80%;
         position: absolute;
         left: 50%;
         transform: translate(-50%, -60%);
     }
 
-    .job-posted-head {
+    .applicants-head {
         font-size: 22px;
         font-weight: 600;
         margin-bottom: 20px;
         color: #ffffff;
     }
 
-
+    .applicants-para{
+        color: white;
+        font-size: 14px;
+    }
     .job-det {
         box-shadow: 0px 3px 6px #557DA526;
         border-radius: 6px;
@@ -29,41 +32,18 @@ $text-color: #43afff;
         max-width: 366px;
         padding: 20px;
 
-        .job-title {
+        .applicant-title {
             font-size: 17px;
             color: #303F60;
             font-weight: 600;
             margin-bottom: 10px;
         }
 
-        .job-para {
+        .applicant-para {
             font-size: 14px;
             color: #303F60;
         }
 
-        .location {
-            font-size: 16px;
-            font-weight: lighter;
-            text-transform: capitalize;
-            margin-top: 20px;
-        }
-
-        .view-applicants {
-            background: #43AFFF33 0% 0% no-repeat padding-box;
-            border-radius: 5px;
-            border: none;
-            padding: 8px 16px;
-            font-size: 14px;
-            float: right;
-
-            &:focus {
-                outline: none;
-            }
-
-            &:hover{
-                text-decoration: none;
-            }
-        }
     }
 }
 
@@ -74,15 +54,4 @@ $text-color: #43afff;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-}
-
-
-.post-job {
-    border: none;
-    background: $text-color;
-    color: white;
-    padding: 8px 32px;
-    border-radius: 4px;
-    margin-top: 20px;
-    font-weight: 600;
 }

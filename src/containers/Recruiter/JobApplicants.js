@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
-
+import EventNoteIcon from "@material-ui/icons/EventNote";
+import './recruiter_scss/JobApplicants.scss';
 const JobApplicants = ({ match }) => {
   const [data, setData] = useState([]);
 
@@ -17,8 +18,12 @@ const JobApplicants = ({ match }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
-        setData(data.data);
+        if (!data.message) {
+          console.log(data.data);
+          setData(data.data);
+        } else {
+          console.log(data);
+        }
       });
   };
 
@@ -28,27 +33,39 @@ const JobApplicants = ({ match }) => {
 
   const applicantsDetail = data.map((d) => {
     return (
-      <div>
-        <div>
+      <div key={d.id} className="col-md-3 col-6 job-det">
+        <div style={{display:'flex' ,alignItems:'center',marginBottom:'20px'}}>
           <div>
             <Avatar className="ava-user">{d.name[0]}</Avatar>
           </div>
-          <div>
-            <h6>{d.name}</h6>
-            <p>{d.email}</p>
+          <div style={{marginLeft:'20px'}}>
+            <h6 className="applicant-title">{d.name}</h6>
+            <p className="applicant-para">{d.email}</p>
           </div>
         </div>
         <div>
-          <h6>Skills</h6>
-          <p>{d.skills}</p>
+          <h6 className="applicant-title">Skills</h6>
+          <p className="applicant-para">{d.skills}</p>
         </div>
       </div>
     );
   });
   return (
-    <div>
-      <h1>Job applicants</h1>
-      <div>{applicantsDetail}</div>
+    <div className="applicants-main">
+      <div className="applicants">
+        <h6 className="applicants-head">Applicants for this job</h6>
+        <p className="applicants-para">Total {data.length} applicants</p>
+        {data.length ? (
+          <div className="row">{applicantsDetail}</div>
+        ) : (
+          <div className="no-job">
+            <EventNoteIcon style={{ fontSize: "100px", color: "grey" }} />
+            <h6 style={{ color: "#303F60", fontSize: "20px" }}>
+               No applications available!
+            </h6>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
