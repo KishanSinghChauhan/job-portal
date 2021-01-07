@@ -11,6 +11,7 @@ import AllJobs from "./containers/Candidate/AllJobs";
 import AppliedJobs from "./containers/Candidate/AppliedJobs";
 import JobPosted from './containers/Recruiter/JobPosted';
 import NewJobPost from './containers/Recruiter/NewJobPost';
+import JobApplicants from './containers/Recruiter/JobApplicants';
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/candidate/jobs/applied" component={AppliedJobs} />
         <Route path="/recruiter/jobs" exact component={JobPosted} />
         <Route path="/recruiter/jobs/post" component={NewJobPost} />
+        <Route path="/job/:id/applicants" component={JobApplicants} />
       </Switch>
     </>
   );

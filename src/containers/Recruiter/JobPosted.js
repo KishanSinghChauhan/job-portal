@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 import "./recruiter_scss/JobPosted.scss";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import EventNoteIcon from "@material-ui/icons/EventNote";
+
 const JobPosted = () => {
   const history = useHistory();
   const [data, setData] = useState([]);
@@ -25,28 +26,6 @@ const JobPosted = () => {
     Jobs();
   }, []);
 
-  const ViewApplications = (id) => {
-    fetch(
-      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${id}/candidates`,
-      {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: localStorage.getItem("jwt"),
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
-
-  const handleApplication = (d) => {
-    console.log(d.id);
-    ViewApplications(d.id);
-  };
-
   const jobDetails = data.map((d) => {
     return (
       <div key={d.id} className="col-md-3 col-6 job-det">
@@ -56,14 +35,11 @@ const JobPosted = () => {
           <LocationOnOutlinedIcon style={{ color: "#43AFFF" }} />
           {d.location}
         </p>
-        <button
+        <Link to={`/job/${d.id}/applicants`}
           className="view-applicants"
-          onClick={() => {
-            handleApplication(d);
-          }}
         >
           View Applications
-        </button>
+        </Link>
       </div>
     );
   });

@@ -53,6 +53,7 @@ $text-color: #43afff;
         border-radius: 4px;
         margin-top: 20px;
         font-weight: 600;
+       
     }
 
     .forget-link {
@@ -88,4 +89,8 @@ $text-color: #43afff;
             text-decoration: none;
         }
     }
+}
+
+.log-btn:focus, .log-btn:active{
+    outline: none;
 }

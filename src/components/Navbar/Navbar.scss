@@ -37,8 +37,22 @@ $border-color:#4D618E;
         font-weight: 600;
         font-size: 16px;
         background: #4D618E;
-        &:hover{
+
+        &:hover {
             text-decoration: none;
         }
     }
+
+}
+
+.ava-user {
+    background: #D9EFFF !important;
+    color: #303F60 !important;
+    text-transform: capitalize;
+}
+
+
+.log-out{
+    cursor: pointer;
+    
 }
