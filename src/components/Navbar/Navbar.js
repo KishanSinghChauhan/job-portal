@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
-
+import { DropdownButton,Dropdown } from "react-bootstrap";
 const Navbar = ({ handleToken,token,userRole,userData }) => {
 
   const token2 = localStorage.getItem('jwt');
@@ -18,17 +18,11 @@ const Navbar = ({ handleToken,token,userRole,userData }) => {
           {token || token2 ? (
             <div>
               {userRole === 1 ? (
-                <Link
-                  className='user-link'
-                  to="/candidate/jobs/applied"
-                >
+                <Link className="user-link" to="/candidate/jobs/applied">
                   Applied Jobs
                 </Link>
               ) : (
-                <Link
-                  className="user-link"
-                  to="/recruiter/jobs/post"
-                >
+                <Link className="user-link" to="/recruiter/jobs/post">
                   Post a Job
                 </Link>
               )}
@@ -37,14 +31,17 @@ const Navbar = ({ handleToken,token,userRole,userData }) => {
             <Link className="login-btn" to="/login">
               Login/Signup
             </Link>
-            
           )}
           {userData || token2 ? (
             <>
               <Avatar className="ava-user">{userData[0]}</Avatar>
-              <p className="log-out" onClick={handleToken}>
-                Logout
-              </p>
+              <DropdownButton
+                id="dropdown-basic-button"
+                className='drop-btn'
+                title=""
+              >
+                <Dropdown.Item onClick={handleToken}>Logout</Dropdown.Item>
+              </DropdownButton>
             </>
           ) : null}
         </div>
