@@ -52,7 +52,38 @@ $border-color:#4D618E;
 }
 
 
-.log-out{
+.log-out {
     cursor: pointer;
-    
+
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-link {
+    color: #ffffff;
+    margin-right: 40px;
+
+    &:hover {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    &:active {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 75%;
+            left: 15%;
+            bottom: -32px;
+            height: 4px;
+            background: #43AFFF;
+
+        }
+    }
+
 }

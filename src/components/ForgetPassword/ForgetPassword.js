@@ -5,17 +5,10 @@ const ForgetPassword =() => {
   const history = useHistory();
   const [email,setEmail] = useState('')
 
-  // const resetToken = () => {
-  //   fetch(
-  //     `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${email}`
-  //   ).then(res => res.json())
-  //   .then(data => {
-  //     console.log(data);
-  //   });
-  // }
 
   const handleToken = () => {
-    history.push('/reset-pass')
+    alert("Sorry for your inconvenience, we are working on this feature!");
+    history.push('/login')
   }
   return (
     <div className="forget-main">

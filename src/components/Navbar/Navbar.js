@@ -5,6 +5,7 @@ import Avatar from "@material-ui/core/Avatar";
 
 const Navbar = ({ handleToken,token,userRole,userData }) => {
 
+  const token2 = localStorage.getItem('jwt');
   return (
     <div className="navbar-main">
       <div className="navbar-head">
@@ -13,27 +14,40 @@ const Navbar = ({ handleToken,token,userRole,userData }) => {
             My<span className="job-head">Jobs</span>
           </h3>
         </div>
-        {token ? (
-          <div>
-            {userRole === 1 ? (
-              <Link to="/candidate/jobs/applied">Applied Jobs</Link>
-            ) : (
-              <Link to="/recruiter/jobs/post">Post a Job</Link>
-            )}
-          </div>  
-        ) : (
-          <Link className="login-btn" to="/login">
-            Login/Signup
-          </Link>
-        )}
-        {userData ? (
-          <>
-            <Avatar className="ava-user">{userData[0]}</Avatar>
-            <p className="log-out" onClick={handleToken}>
-              Logout
-            </p>
-          </>
-        ) : null}
+        <div className="nav-right">
+          {token || token2 ? (
+            <div>
+              {userRole === 1 ? (
+                <Link
+                  className='user-link'
+                  to="/candidate/jobs/applied"
+                >
+                  Applied Jobs
+                </Link>
+              ) : (
+                <Link
+                  className="user-link"
+                  to="/recruiter/jobs/post"
+                >
+                  Post a Job
+                </Link>
+              )}
+            </div>
+          ) : (
+            <Link className="login-btn" to="/login">
+              Login/Signup
+            </Link>
+            
+          )}
+          {userData || token2 ? (
+            <>
+              <Avatar className="ava-user">{userData[0]}</Avatar>
+              <p className="log-out" onClick={handleToken}>
+                Logout
+              </p>
+            </>
+          ) : null}
+        </div>
       </div>
     </div>
   );

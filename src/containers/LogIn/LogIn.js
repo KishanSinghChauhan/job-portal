@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import './LogIn.scss'
-const LogIn = ({ handleLogin }) => {
+const LogIn = ({ handleLogin}) => {
   const history = useHistory();
   const [email, setEmail] = useState("");
 
@@ -25,9 +25,10 @@ const LogIn = ({ handleLogin }) => {
         } else {
           handleLogin(data.data.token,data.data)
           console.log(data.data);
+          localStorage.setItem("jwt", data.data.token);
+          localStorage.setItem("data", JSON.stringify(data.data));
         }
-        localStorage.setItem('jwt',data.data.token);
-        localStorage.setItem('data',JSON.stringify(data.data))
+        
         if (data.data.userRole === 0) {
           history.push("/recruiter/jobs");
         } else {
