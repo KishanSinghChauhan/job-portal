@@ -5,7 +5,6 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 
 
 const SignUp = () => {
@@ -38,12 +37,19 @@ const SignUp = () => {
         if (data.errors) {
           console.log(data.errors);
         } 
+        else if(data.message){
+          console.log(data.message);
+        }
         else {
           localStorage.setItem("jwt", data.data.token);
           localStorage.setItem("data", JSON.stringify(data.data));
 
           console.log(data.data);
-          // history.push("/all-jobs");
+        }
+        if (data.data.userRole === 0) {
+          history.push("/recruiter/jobs");
+        } else {
+          history.push("/candidate/jobs");
         }
       });
   };

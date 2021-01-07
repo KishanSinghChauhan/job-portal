@@ -17,8 +17,12 @@ const JobPosted = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data.data);
-        setData(data.data.data);
+        if (!data.message) {
+          console.log(data.data);
+          setData(data.data.data);
+        } else {
+          console.log(data);
+        };
       });
   };
 
@@ -51,7 +55,7 @@ const JobPosted = () => {
     <div className="job-posted-main">
       <div className="job-posted">
         <h1 className="job-posted-head">Job Posted by you</h1>
-        {data ? (
+        {data.length ? (
           <div className="row">{jobDetails}</div>
         ) : (
           <div className="no-job">
