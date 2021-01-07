@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import './LogIn.scss'
-const LogIn = () => {
+const LogIn = ({ handleLogin }) => {
   const history = useHistory();
   const [email, setEmail] = useState("");
 
@@ -23,14 +23,14 @@ const LogIn = () => {
         if (data.message) {
           console.log(data.message);
         } else {
-          localStorage.setItem("jwt", data.data.token);
-          localStorage.setItem("data", JSON.stringify(data.data));
+          handleLogin(data.data.token,data.data)
           console.log(data.data);
         }
-        if(data.data.userRole === 0){
-          history.push('/recruiter/jobs')
-        }
-        else{
+        localStorage.setItem('jwt',data.data.token);
+        localStorage.setItem('data',JSON.stringify(data.data))
+        if (data.data.userRole === 0) {
+          history.push("/recruiter/jobs");
+        } else {
           history.push("/candidate/jobs");
         }
       });
@@ -60,14 +60,16 @@ const LogIn = () => {
         <Link className="forget-link" to="/forget-pass">
           Forgot your password?
         </Link>
-        <div className='logBtn-main'>
+        <div className="logBtn-main">
           <button className="log-btn" onClick={() => Login()}>
             Login
           </button>
         </div>
-        <div className='signUp-part'>
+        <div className="signUp-part">
           <h6>New to MyJobs?</h6>
-          <Link className='create-acc' to="/signup">Create an account</Link>
+          <Link className="create-acc" to="/signup">
+            Create an account
+          </Link>
         </div>
       </div>
     </div>
